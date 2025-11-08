@@ -2,9 +2,6 @@
 {% block title %}Inici{% endblock %}
 
 {% block content %}
-<!-- MAPA AMB BANNER PLE -->
-
-
 <div id="map" class="">
 
 <div class="map-buttons">
@@ -23,7 +20,23 @@
     <label class="layer-option"><input type="checkbox" id="catastro-checkbox"> Catastro (WMS)</label>
     <label class="layer-option"><input type="checkbox" id="buildings-3d-checkbox" checked> Edificios 3D (BCN)</label>
     <label class="layer-option"><input type="checkbox" id="metro-lines-checkbox"> Líneas de Metro</label>
+    <label class="layer-option"><input type="checkbox" id="metro-stops-checkbox"> Paradas de Metro</label>
+    <label class="layer-option"><input type="checkbox" id="population-points-checkbox"> Población (Puntos)</label>
+    <label class="layer-option"><input type="checkbox" id="population-heatmap-checkbox"> Población (Mapa Calor)</label>
+
 </div>
+
+<div id="heatmap-slider-container" class="map-slider-container" style="display: none;">
+    <div>
+        <label for="heatmap-radius-slider">Radio</label>
+        <input type="range" id="heatmap-radius-slider" min="1" max="35" value="15" step="1">
+    </div>
+    <div>
+        <label for="heatmap-intensity-slider">Intensidad</label>
+        <input type="range" id="heatmap-intensity-slider" min="0.01" max="1" value="0.4" step="0.05">
+    </div>
+</div>
+
 
 </div>
 <script>

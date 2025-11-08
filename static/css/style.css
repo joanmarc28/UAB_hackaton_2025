@@ -3664,3 +3664,27 @@ pre.prettyprint {
   -webkit-animation-name: Floatingx;
   -moz-animation-name: Floatingx;
 }
+
+/* ==================================
+   ESTILO PARA EL SLIDER DEL MAPA
+   ================================== */
+.map-slider-container {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 8px 12px;
+    border-radius: 4px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    z-index: 10; /* Por encima del mapa */
+    display: none; /* 'flex' o 'block' cuando se muestre */
+    flex-direction: column; /* Apila los sliders verticalmente */
+    gap: 8px; /* Espacio entre sliders */
+}
+
+.map-slider-container label {
+    font-size: 13px;
+    font-weight: bold;
+    font-family: Arial, sans-serif;
+    margin-right: 5px;
+}

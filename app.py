@@ -26,9 +26,10 @@ def index():
     
     # Define las coordenadas y el zoom iniciales que se pasarán al template.
     # Puedes cambiar estos valores (Ej: centro de Madrid, España)
-    START_LAT = 40.4167
-    START_LON = -3.7038
-    START_ZOOM = 5
+    START_LAT = 41.3874
+    START_LON = 2.1686
+    START_ZOOM = 12
+
 
     # Renderiza el template 'index.html' y le inyecta las variables
     return render_template(

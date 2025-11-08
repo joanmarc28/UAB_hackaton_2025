@@ -225,7 +225,7 @@ function initializeMap() {
         });
 
         // --- Ordenar Capas ---
-        const layersToMove = ['catastro-layer', 'metro-lines-layer', 'metro-stops-layer', 'population-points-layer', 'population-heatmap-layer'];
+        const layersToMove = ['catastro-layer', 'metro-stops-layer', 'population-points-layer', 'population-heatmap-layer', 'metro-lines-layer'];
         layersToMove.forEach(layerId => {
             if (map.getLayer(layerId)) {
                 // Mueve todas las capas debajo de los edificios 3D

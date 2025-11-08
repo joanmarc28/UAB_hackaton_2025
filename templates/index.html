@@ -29,13 +29,13 @@
     <hr>
     <h4>Capas Adicionales</h4>
     <label class="layer-option"><input type="checkbox" id="catastro-checkbox"> Catastro (WMS)</label>
-    
     <label class="layer-option"><input type="checkbox" id="buildings-3d-checkbox" checked> Edificios 3D (BCN)</label>
+    
+    <label class="layer-option"><input type="checkbox" id="metro-lines-checkbox"> Líneas de Metro</label>
 </div>
 
 
 <script>
-    // Variables para las coordenadas iniciales pasadas desde Flask
     const START_LAT = {{ start_lat }};
     const START_LON = {{ start_lon }};
     const START_ZOOM = {{ start_zoom }};

@@ -1,6 +1,6 @@
 <h1 align="center">
   <br>
-    <img src="https://raw.githubusercontent.com/NIU1673390/UAB_hackaton_2025/main/static/img/smartmetro_2.png" alt="SmartMetro Logo" width="250">
+    <img src="https://raw.githubusercontent.com/NIU1673390/UAB_hackaton_2025/tree/main/static/img/smartmetro_2.png" alt="SmartMetro Logo" width="250">
   <br>
     SmartMetro
   <br>

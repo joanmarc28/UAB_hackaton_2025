@@ -1,15 +1,23 @@
-from fastapi import FastAPI, Request, Depends, Form, Response, HTTPException
+from fastapi import FastAPI, Request
 from fastapi.templating import Jinja2Templates
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import HTMLResponse
 from fastapi import Form, Request
 from fastapi.responses import RedirectResponse
 import uvicorn
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+MAPTILER_API_KEY = os.getenv("MAPTILER_API_KEY")
+
+if not MAPTILER_API_KEY:
+    print("ALERTA: No s'ha trobat la MAPTILER_API_KEY al fitxer .env.")
+    MAPTILER_API_KEY = ""
 
 app = FastAPI()
-app.mount("/static", StaticFiles(directory="static"), name="static")  # monta la carpeta static per servir fitxers estatics
-
-templates = Jinja2Templates(directory="templates")  # carpeta on hi ha les plantilles jinja2
+app.mount("/static", StaticFiles(directory="static"), name="static")
+templates = Jinja2Templates(directory="templates")
 
 START_LAT = 41.3874
 START_LON = 2.1686
@@ -22,7 +30,8 @@ def index(request: Request):
         "request": request,
         "start_lat": START_LAT,
         "start_lon": START_LON,
-        "start_zoom": START_ZOOM
+        "start_zoom": START_ZOOM,
+        "maptiler_api_key": MAPTILER_API_KEY
     })
 
 

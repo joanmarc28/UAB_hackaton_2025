@@ -17,6 +17,7 @@
     <label class="layer-option"><input type="radio" name="base-layer" value="esri-topo"> Topográfico</label>
     <hr>
     <h4>Capas Adicionales</h4>
+    <label class="layer-option"><input type="checkbox" id="terrain-3d-checkbox"> Relieve 3D (DTM)</label>
     <label class="layer-option"><input type="checkbox" id="catastro-checkbox"> Catastro (WMS)</label>
     <label class="layer-option"><input type="checkbox" id="buildings-3d-checkbox" checked> Edificios 3D (BCN)</label>
     <label class="layer-option"><input type="checkbox" id="metro-lines-checkbox"> Líneas de Metro</label>
@@ -48,6 +49,7 @@
     const START_LAT = {{ start_lat }};
     const START_LON = {{ start_lon }};
     const START_ZOOM = {{ start_zoom }};
+    const MAPTILER_API_KEY = "{{ maptiler_api_key|safe }}";
 </script>
 <script src="static/js/map.js"></script>
 

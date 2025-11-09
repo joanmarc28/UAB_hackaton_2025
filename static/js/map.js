@@ -29,6 +29,11 @@ const baseMaps = {
 };
 
 // Referencias a los elementos del DOM
+// ==========================================================
+// CANVI 1: Afegeixo la referència al nou checkbox del DTM
+// ==========================================================
+const terrain3DCheckbox = document.getElementById('terrain-3d-checkbox');
+
 const catastroCheckbox = document.getElementById('catastro-checkbox');
 const layersToggleBtn = document.getElementById('layers-toggle');
 const layersPanel = document.getElementById('layers-panel');
@@ -70,13 +75,38 @@ function initializeMap() {
         style: blankStyle, 
         center: [START_LON, START_LAT], 
         zoom: START_ZOOM, 
-        antialias: true 
+        antialias: true,
+        maxPitch: 85
     });
 
     map.addControl(new maplibregl.NavigationControl({ showCompass: true, showZoom: true }), 'top-left');
     map.addControl(new maplibregl.ScaleControl({ unit: 'metric' }), 'bottom-left');
 
     map.on('load', () => {
+
+        // ==========================================================
+        // BLOC TERRENY 3D (DTM) DE MAPTILER
+        // ==========================================================
+        
+        // 1. Afegir la font de dades (Això està bé)
+        map.addSource('maptiler-terrain', {
+            'type': 'raster-dem',
+            'tiles': [
+                `https://api.maptiler.com/tiles/terrain-rgb-v2/{z}/{x}/{y}.png?key=${MAPTILER_API_KEY}`
+            ],
+            'tileSize': 512,
+            'maxzoom': 14
+        });
+
+        // ==========================================================
+        // CANVI 2: Hem eliminat 'map.setTerrain' d'aquí
+        // Ara el terreny està APAGAT per defecte.
+        // ==========================================================
+
+        // 3. (Opcional) Afegir llum (Això està bé, ajuda als edificis 3D)
+        map.setLight({anchor: 'viewport', color: '#ffffff', intensity: 0.4});
+        // ==========================================================
+
         // --- Mapas Base ---
         Object.keys(baseMaps).forEach(mapId => { 
             map.addSource(mapId, baseMaps[mapId]); 
@@ -249,9 +279,17 @@ function initializeMap() {
         ];
         layersToMove.forEach(layerId => {
             if (map.getLayer(layerId)) {
-                map.moveLayer(layerId, 'buildings-3d-layer');
+                // He trobat la primera capa de símbols (etiquetes de carrer)
+                const firstSymbolLayer = map.getStyle().layers.find(l => l.type === 'symbol');
+                const beforeLayer = firstSymbolLayer ? firstSymbolLayer.id : 'buildings-3d-layer';
+                // Movem les nostres capes just abans de les etiquetes
+                map.moveLayer(layerId, beforeLayer);
             }
         });
+        // Movem els edificis 3D al final (per sobre de tot)
+        if (map.getLayer('buildings-3d-layer')) {
+             map.moveLayer('buildings-3d-layer');
+        }
 
         // --- Interacció del Mapa (Popups i Cursos) ---
         
@@ -309,15 +347,33 @@ layersToggleBtn.addEventListener('click', (e) => {
 layersPanel.addEventListener('click', (e) => { e.stopPropagation(); });
 
 // Listener per a Mapes Base
-// FIX: El teu codi tenia 'name-layer' en lloc de 'name'
+// FIX: Corregit 'name-layer' a 'name'
 document.querySelectorAll('input[name="base-layer"]').forEach(radio => { 
     radio.addEventListener('change', (e) => { 
         if (e.target.checked) setBaseMap(e.target.value); 
     }); 
 });
 
+// ==========================================================
+// CANVI 3: Afegeixo el listener per al checkbox del DTM
+// ==========================================================
+terrain3DCheckbox.addEventListener('change', (e) => {
+    if (!map) return;
+    if (e.target.checked) {
+        // Activa el terreny
+        map.setTerrain({
+            'source': 'maptiler-terrain',
+            'exaggeration': 1.5 
+        });
+    } else {
+        // Desactiva el terreny
+        map.setTerrain(null);
+    }
+});
+
 // Listener per a Catastro
 catastroCheckbox.addEventListener('change', (e) => { 
+    if (!map || !map.getLayer('catastro-layer')) return;
     map.setLayoutProperty('catastro-layer', 'visibility', e.target.checked ? 'visible' : 'none'); 
 });
 

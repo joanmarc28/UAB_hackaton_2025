@@ -318,29 +318,20 @@ However, feel free to fork the repository and experiment with it for learning an
 <table align="center">
   <tr>
     <td align="center" style="border:none;">
-      <img src="https://drive.google.com/uc?export=view&id=182neS8AfRccrTfZxhhOWW1_33He05jec" style="width:120px; height:120px; border-radius:50%; object-fit:cover;" alt="Martí Armengod Villar"/><br/>
-      <span style="font-size:14px;"><strong>Martí Armengod Villar</strong></span><br/>
-      <span style="font-size:12px;"><em>SW Lead</em></span>
+      <img src="https://raw.githubusercontent.com/NIU1673390/UAB_hackaton_2025/main/static/img/arnau.jpg" style="width:120px; height:120px; border-radius:50%; object-fit:cover;" alt="Arnau López Herreros"/><br/>
+      <span style="font-size:14px;"><strong>Arnau López Herreros</strong></span><br/>
     </td>
     <td align="center" style="border:none;">
-      <img src="https://drive.google.com/uc?export=view&id=10n86a7ojWd_smrINd2Kd0ascUYU9XNRo" style="width:120px; height:120px; border-radius:50%; object-fit:cover;" alt="Lara Castillejo Roig"/><br/>
-      <span style="font-size:14px;"><strong>Lara Castillejo Roig</strong></span><br/>
-      <span style="font-size:12px;"><em>Testing & Validation Lead</em></span>
-    </td>
-    <td align="center" style="border:none;">
-      <img src="https://drive.google.com/uc?export=view&id=1beCsVFoD9ogQ_LeVuKoXPReSoyoeAkFH" style="width:120px; height:120px; border-radius:50%; object-fit:cover;" alt="Julia Lipin Gener Rey"/><br/>
-      <span style="font-size:14px;"><strong>Julia Lipin Gener Rey</strong></span><br/>
-      <span style="font-size:12px;"><em>3D & Mechanical Lead</em></span>
-    </td>
-    <td align="center" style="border:none;">
-      <img src="https://drive.google.com/uc?export=view&id=1vqmqJ6zK3hYvRlv5AfvEHue0tsL_oQew" style="width:120px; height:120px; border-radius:50%; object-fit:cover;" alt="Joan Marc Samó Rojas"/><br/>
+      <img src="https://raw.githubusercontent.com/NIU1673390/UAB_hackaton_2025/main/static/img/joanmarc.jpg" style="width:120px; height:120px; border-radius:50%; object-fit:cover;" alt="Joan Marc Samó Rojas"/><br/>
       <span style="font-size:14px;"><strong>Joan Marc Samó Rojas</strong></span><br/>
-      <span style="font-size:12px;"><em>Product Owner</em></span>
     </td>
     <td align="center" style="border:none;">
-      <img src="https://drive.google.com/uc?export=view&id=16fCYusOWvp_Bf6fR0YFLo8GPbOtSsn5x" style="width:120px; height:120px; border-radius:50%; object-fit:cover;" alt="Luís Vera Albarca"/><br/>
-      <span style="font-size:14px;"><strong>Luís Vera Albarca</strong></span><br/>
-      <span style="font-size:12px;"><em>HW Lead</em></span>
+      <img src="https://raw.githubusercontent.com/NIU1673390/UAB_hackaton_2025/main/static/img/josep.jpg" style="width:120px; height:120px; border-radius:50%; object-fit:cover;" alt="Josep Ma Cases"/><br/>
+      <span style="font-size:14px;"><strong>Josep Maria Cases</strong></span><br/>
+    </td>
+    <td align="center" style="border:none;">
+      <img src="https://raw.githubusercontent.com/NIU1673390/UAB_hackaton_2025/main/static/img/gorka.jpg" style="width:120px; height:120px; border-radius:50%; object-fit:cover;" alt="Gorka Sagristà Novell"/><br/>
+      <span style="font-size:14px;"><strong>Gorka Sagristà Novell</strong></span><br/>
     </td>
   </tr>
 </table>
@@ -351,7 +342,7 @@ Special thanks to:
 
 # Gallery
 <p align>
-<img src="https://raw.githubusercontent.com/joanmarc28/Robocat/main/gallery/walking_uni.gif" alt="RoboCat Logo" width="480"> 
+<img src="https://raw.githubusercontent.com/NIU1673390/UAB_hackaton_2025/main/static/img/smartmetro_2.png" alt="RoboCat Logo" width="480"> 
 <img src="https://raw.githubusercontent.com/joanmarc28/Robocat/main/gallery/spread_legged.jpeg" alt="RoboCat Logo" width="300">
 <img src="https://raw.githubusercontent.com/joanmarc28/Robocat/main/gallery/stretch.jpeg" alt="RoboCat Logo" width="450">
 <img src="https://raw.githubusercontent.com/joanmarc28/Robocat/main/gallery/eyes_head.gif" alt="RoboCat Logo" width="270">

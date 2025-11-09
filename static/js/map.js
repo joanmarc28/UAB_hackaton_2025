@@ -45,6 +45,10 @@ const populationHeatmapCheckbox = document.getElementById('population-heatmap-ch
 // ==========================================================
 const stationDemandCheckbox = document.getElementById('station-demand-checkbox');
 
+const ampliacioL1Checkbox = document.getElementById('ampliacio-l1-checkbox');
+
+const l12Checkbox = document.getElementById('l12-checkbox');
+
 
 // Referencias a los sliders del mapa de calor
 const heatmapSliderContainer = document.getElementById('heatmap-slider-container');
@@ -244,13 +248,54 @@ function initializeMap() {
             }
         });
 
+        // ==========================================================
+        // NUEVO BLOQUE: Capa de Ampliación L1
+        // ==========================================================
+        map.addSource('ampliacio-l1-source', {
+            'type': 'geojson',
+            'data': 'static/data/ampliacio_l1.geojson' // Asegúrate que este sea el nombre del archivo
+        });
+        map.addLayer({
+            'id': 'ampliacio-l1-layer',
+            'type': 'line',
+            'source': 'ampliacio-l1-source',
+            'layout': { 
+                'visibility': 'none' // Desactivada por defecto
+            },
+            'paint': {
+                'line-color': '#CE1126', // Rojo L1
+                'line-width': 5,
+                'line-dasharray': [2, 2] // Línea discontinua
+            }
+        });
+
+        map.addSource('l12-source', {
+            'type': 'geojson',
+            'data': 'static/data/L12.geojson' // Asegúrate que este sea el nombre del archivo
+        });
+        map.addLayer({
+            'id': 'l12-layer',
+            'type': 'line',
+            'source': 'l12-source',
+            'layout': { 
+                'visibility': 'none' // Desactivada por defecto
+            },
+            'paint': {
+                'line-color': '#48918dff',
+                'line-width': 5,
+                'line-dasharray': [2, 2] // Línea discontinua
+            }
+        });
+
 
         // --- Ordenar Capes ---
         const layersToMove = [
             'catastro-layer',  
             'population-points-layer', 
             'population-heatmap-layer',
-            'metro-lines-layer', 
+            'metro-lines-layer',
+            'ampliacio-l1-layer',
+            'l12-layer', 
             'metro-stops-layer',
             'station-demand-layer' // Afegim la capa de demanda a la llista
         ];
@@ -396,6 +441,16 @@ heatmapIntensitySlider.addEventListener('input', (e) => {
 stationDemandCheckbox.addEventListener('change', (e) => {
     if (!map || !map.getLayer('station-demand-layer')) return; 
     map.setLayoutProperty('station-demand-layer', 'visibility', e.target.checked ? 'visible' : 'none');
+});
+
+ampliacioL1Checkbox.addEventListener('change', (e) => {
+    if (!map || !map.getLayer('ampliacio-l1-layer')) return; 
+    map.setLayoutProperty('ampliacio-l1-layer', 'visibility', e.target.checked ? 'visible' : 'none');
+});
+
+l12Checkbox.addEventListener('change', (e) => {
+    if (!map || !map.getLayer('l12-layer')) return; 
+    map.setLayoutProperty('l12-layer', 'visibility', e.target.checked ? 'visible' : 'none');
 });
 
 

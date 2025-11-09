@@ -37,7 +37,6 @@ const toggle3DBtn = document.getElementById('toggle-3d');
 const buildingsCheckbox = document.getElementById('buildings-3d-checkbox');
 const metroLinesCheckbox = document.getElementById('metro-lines-checkbox');
 const metroStopsCheckbox = document.getElementById('metro-stops-checkbox');
-const populationPointsCheckbox = document.getElementById('population-points-checkbox');
 const populationHeatmapCheckbox = document.getElementById('population-heatmap-checkbox');
 
 // ==========================================================
@@ -48,6 +47,8 @@ const stationDemandCheckbox = document.getElementById('station-demand-checkbox')
 const ampliacioL1Checkbox = document.getElementById('ampliacio-l1-checkbox');
 
 const l12Checkbox = document.getElementById('l12-checkbox');
+
+const servicesCheckbox = document.getElementById('services-checkbox');
 
 
 // Referencias a los sliders del mapa de calor
@@ -167,27 +168,6 @@ function initializeMap() {
             'data': 'static/data/population_points.geojson'
         });
         
-        // --- Capa Puntos de Población (Graduados) ---
-        map.addLayer({
-            'id': 'population-points-layer',
-            'type': 'circle',
-            'source': 'population-points',
-            'layout': { 'visibility': 'none' },
-            'paint': {
-                'circle-radius': [
-                    'interpolate', ['linear'], ['get', 'poblacion_estimada'],
-                    0, 1, 10, 1.5, 50, 3, 100, 5
-                ],
-                'circle-color': [
-                    'interpolate', ['linear'], ['get', 'poblacion_estimada'],
-                    0, '#ffffcc', 25, '#fd8d3c', 50, '#e31a1c', 100, '#800026'
-                ],
-                'circle-opacity': 0.75,
-                'circle-stroke-color': '#ffffff',
-                'circle-stroke-width': 0.5
-            }
-        });
-        
         // --- Capa Mapa de Calor de Población (Heatmap) ---
         map.addLayer({
             'id': 'population-heatmap-layer',
@@ -287,13 +267,39 @@ function initializeMap() {
             }
         });
 
+        map.addSource('services-source', {
+            'type': 'geojson',
+            'data': 'static/data/serveis.geojson' // Assegura't que el fitxer es digui així
+        });
+        map.addLayer({
+            'id': 'services-layer',
+            'type': 'circle',
+            'source': 'services-source',
+            'layout': { 'visibility': 'none' },
+            'paint': {
+                'circle-radius': 5,
+                'circle-stroke-width': 1,
+                'circle-stroke-color': '#ffffff',
+                // Colors basats en la propietat 'CATEGORIA'
+                'circle-color': [
+                    'match',
+                    ['get', 'CATEGORIA'],
+                    'Aparcaments', '#007bff', // Blau
+                    'Punts d\'ancoratge de bicicletes', '#28a745', // Verd
+                    // Afegeix més categories aquí si cal
+                    // 'Altra Categoria', '#altrecolor',
+                    '#6c757d' // Gris per a qualsevol altra categoria
+                ]
+            }
+        });
+
 
         // --- Ordenar Capes ---
         const layersToMove = [
-            'catastro-layer',  
-            'population-points-layer', 
+            'catastro-layer', 
             'population-heatmap-layer',
             'metro-lines-layer',
+            'services-layer',
             'ampliacio-l1-layer',
             'l12-layer', 
             'metro-stops-layer',
@@ -411,12 +417,6 @@ metroStopsCheckbox.addEventListener('change', (e) => {
     map.setLayoutProperty('metro-stops-layer', 'visibility', e.target.checked ? 'visible' : 'none');
 });
 
-// Listener per als Punts de Població
-populationPointsCheckbox.addEventListener('change', (e) => {
-    if (!map || !map.getLayer('population-points-layer')) return; 
-    map.setLayoutProperty('population-points-layer', 'visibility', e.target.checked ? 'visible' : 'none');
-});
-
 // --- Listeners per al Mapa de Calor de Població ---
 populationHeatmapCheckbox.addEventListener('change', (e) => {
     if (!map || !map.getLayer('population-heatmap-layer')) return; 
@@ -452,6 +452,7 @@ l12Checkbox.addEventListener('change', (e) => {
     if (!map || !map.getLayer('l12-layer')) return; 
     map.setLayoutProperty('l12-layer', 'visibility', e.target.checked ? 'visible' : 'none');
 });
+
 
 
 // --- Controls Addicionals del Mapa ---
